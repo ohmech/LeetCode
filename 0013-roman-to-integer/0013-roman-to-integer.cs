@@ -10,25 +10,13 @@ public class Solution {
             {'D', 500},
             {'M', 1000}
         };
-        int resault = 0;
-        for(int i = 0; i < s.Length; i++)
+        int resault = roman[s[s.Length-1]];
+        for(int i = 1; i < s.Length; i++)
         {
-            if(s.Length == 1)
-            {
-                resault += roman[s[i]];
-                break;
-            }
-            if(roman[s[i]] >= roman[s[i+1]])
-                resault += roman[s[i]];
+            if(i > 0 && roman[s[i]] <= roman[s[i-1]])
+                resault += roman[s[i-1]];
             else
-                resault -= roman[s[i]];
-            if(s.Length == 2 || i == s.Length-2)
-            {
-                resault += roman[s[i+1]];
-                break;
-            }
-            
-                
+                resault -= roman[s[i-1]];
         }
         return resault;
     }
